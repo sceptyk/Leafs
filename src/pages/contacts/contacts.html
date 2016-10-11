@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contacts
+    </ion-title>
+    <ion-item item-right>
+      <ion-icon name="locate"></ion-icon>
+      <ion-toggle [checked]="isTracking"></ion-toggle>
+    </ion-item>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="invitations">
+    <ion-list-header>Invitations</ion-list-header>
+    <ion-item *ngFor="let inv of (invitations | async)">
+      <ion-avatar item-left>
+        <img [src]="getAvatar(inv) | async">
+      </ion-avatar>
+      <h2>{{inv.name}}</h2>
+      <button (click)="acceptInvitation(inv)">Accept</button>
+      <button (click)="declineInvitation(inv)">Decline</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>People around</ion-list-header>
+    <ion-item *ngFor="let p of (people | async)">
+      <ion-avatar item-left>
+        <img [src]="getAvatar(p) | async">
+      </ion-avatar>
+      <h2>{{p.name}}</h2>
+      <p>{{p.status}}</p>
+      <button (click)="sendInvitation(p)">Connect</button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Contacts</ion-list-header>
+    <ion-item *ngFor="let c of (contacts | async)" (click)="expandContact(c); c.open = !c.open; false;">
+      <ion-card>
+        <ion-card-header>
+          <ion-avatar item-left>
+            <img [src]="getAvatar(c) | async">
+          </ion-avatar>
+          <h2>{{c.name}}</h2>
+          <p>{{c.status}}</p>
+        </ion-card-header>
+        <ion-card-content *ngIf="c.open">
+          <ion-list>
+            <ion-item *ngFor="let link of con.links">
+              <label item-left>{{link.provider}}: </label>
+              <span item-right>{{link.data}}</span>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>
+			Profile
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="profile">
+	<ion-card>
+        <ion-item>
+            <ion-avatar text-center>
+                <img [src]="image || user.card.avatar || 'assets/icon/favicon.ico'" (click)="takePhoto(); false">
+            </ion-avatar>
+        </ion-item>
+
+        <ion-card-content>
+            <h2 class="card-title">
+                <input class="h2" [(ngModel)]="user.card.name" placeholder="Your name">
+            </h2>
+            <p>
+                <input class="h4" [(ngModel)]="user.card.status" placeholder="Your profession">
+            </p>
+        </ion-card-content>
+
+        <button ion-button clear small color="danger" icon-left>
+            <ion-icon name='star'></ion-icon>
+            Update
+        </button>
+	</ion-card>
+	<ion-list>
+		<ion-list-header>Links</ion-list-header>
+		<ion-item *ngFor="let link of user.links">
+			<input class="p link-title" [(ngModel)]="link.provider">
+			<input class="p link-url" [(ngModel)]="link.data">
+			<ion-icon name="trash" (click)="removeLink(link)"></ion-icon>
+		</ion-item>
+	</ion-list>
+	<ion-fab bottom right edge>
+		<button ion-fab (click)="openModal(); false">Link</button>
+	</ion-fab>
+</ion-content>

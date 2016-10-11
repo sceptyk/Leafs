@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Login
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="about">
+    <ion-list inset>
+        <ion-item>
+            <ion-label floating>Email:</ion-label>
+            <ion-input type="email" [(ngModel)]="credentials.email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password:</ion-label>
+            <ion-input type="password" [(ngModel)]="credentials.password"></ion-input>
+        </ion-item>
+    </ion-list>
+    <div>
+        <button secondary (click)="signInWithEmail()">
+            Sign In
+        </button>
+        <button secondary outline (click)="signUpWithEmail()">
+            Sign Up
+        </button>
+    </div>
+    <div>
+        <button (click)="signInWithFacebook()">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </button>
+        <button danger (click)="signInWithGoogle()">
+            <ion-icon name="logo-googleplus"></ion-icon>
+        </button>
+        <button>
+            <ion-icon name="logo-twitter"></ion-icon>
+        </button>
+        <button light>
+            <ion-icon name="logo-github"></ion-icon>
+        </button>
+    </div>
+</ion-content>
